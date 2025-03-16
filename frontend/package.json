@@ -1,0 +1,43 @@
+{
+  "name": "pizzepos-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "clean": "rimraf .svelte-kit build node_modules"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^2.0.3",
+    "@sveltejs/kit": "^1.25.0",
+    "@sveltejs/vite-plugin-svelte": "^2.4.6",
+    "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-svelte": "^2.32.2",
+    "prettier": "^2.8.8",
+    "prettier-plugin-svelte": "^2.10.1",
+    "svelte": "^4.2.0",
+    "svelte-check": "^3.5.0",
+    "vite": "^4.4.9",
+    "vite-plugin-pwa": "^0.16.5",
+    "workbox-precaching": "^7.0.0",
+    "workbox-routing": "^7.0.0",
+    "workbox-strategies": "^7.0.0"
+  },
+  "dependencies": {
+    "@picocss/pico": "^1.5.10",
+    "dayjs": "^1.11.9",
+    "dexie": "^3.2.4",
+    "idb-keyval": "^6.2.1",
+    "localforage": "^1.10.0",
+    "socket.io-client": "^4.7.2",
+    "svelte-local-storage-store": "^0.6.0",
+    "zod": "^3.21.4"
+  }
+}
