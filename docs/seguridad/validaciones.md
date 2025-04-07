@@ -1,0 +1,3 @@
+# Validaciones
+
+(Contenido por definir)

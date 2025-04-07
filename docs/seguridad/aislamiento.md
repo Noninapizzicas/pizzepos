@@ -1,0 +1,3 @@
+# Aislamiento
+
+(Contenido por definir)
