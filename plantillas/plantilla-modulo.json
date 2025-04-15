@@ -1,0 +1,52 @@
+{
+  "nombre": "",
+  "descripcion": "",
+  "tipo": "",
+  "rutaURL": "",
+  "directorio": "",
+  "archivosPrincipales": [],
+  "estructuraArchivos": {
+    "pantallas/": [],
+    "eventos/": [],
+    "servicios/": [],
+    "utils/": [],
+    "config/": []
+  },
+  "stack": {
+    "frontend": "Svelte + Web Components",
+    "estilos": "Tailwind",
+    "bundler": "Vite",
+    "comunicacion": "WebSocket",
+    "validacion": "Zod",
+    "monedas": "Dinero.js",
+    "fechas": "date-fns"
+  },
+  "estandares": {
+    "idioma": "español",
+    "nombresEventos": "modulo:evento",
+    "estructuraCodigo": "modular",
+    "nombresVariables": "descriptivos en español",
+    "estilos": "tailwind, sin CSS puro"
+  },
+  "eventos": {
+    "emite": [],
+    "escucha": []
+  },
+  "accesoCore": true,
+  "dependencias": [],
+  "archivosExternos": [],
+  "otrosModulos": {},
+  "notas": [],
+  "estructuraProyecto": {
+    "raiz": "pizzepos/",
+    "modulos": "pizzepos/modulos/{nombre}/",
+    "compartido": {
+      "core": "packages/core/",
+      "estilos": "estilos/",
+      "config": "packages/config/",
+      "data": "data/",
+      "plantillas": "plantillas/"
+    },
+    "formatoMonorepo": "Lerna + Yarn Workspaces"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "nombre": "PizzePOS",
+  "descripcion": "Sistema modular minimalista para pizzerías, basado en eventos, sin navegación clásica ni persistencia de datos. Pensado para operar en tiempo real con interacción directa y fluida.",
+  "inicializacion": {
+    "puntoEntrada": "http://localhost:3000",
+    "moduloInicial": "cuentas",
+    "modoCarga": "reactivo",
+    "descripcion": "El sistema se inicia en localhost:3000 y muestra el módulo de cuentas. A partir de ahí, la interfaz responde únicamente a eventos del sistema."
+  },
+  "versionado": {
+    "modo": "independiente",
+    "herramienta": "Lerna",
+    "estrategia": "semver",
+    "publicacion": {
+      "habilitada": false,
+      "repositorio": "local",
+      "registro": "N/A"
+    },
+    "releaseNotes": "manual",
+    "changelog": "por módulo",
+    "commits": "convencionales"
+  },
+  "personalizacionVisual": {
+    "archivo": "estilos.json",
+    "ubicacion": "/config/estilos.json",
+    "descripcion": "Define colores, fuentes y estilos visuales del sistema. Permite personalización total desde un archivo sin tocar el código."
+  },
+  "llamadasEntrantes": {
+    "activo": true,
+    "modo": "termux",
+    "descripcion": "Detecta llamadas entrantes desde dispositivos móviles usando Termux. Consulta la agenda local para nombrar cuentas, sin almacenar datos.",
+    "comportamiento": {
+      "numeroReconocido": "crearCuenta(nombre del contacto)",
+      "numeroNoReconocido": "crearCuenta(nombre temporal ingresado manualmente)"
+    },
+    "privacidad": {
+      "almacenamientoLocal": false,
+      "datosPersistentes": false,
+      "cumpleProteccionDatos": true
+    },
+    "requisitos": {
+      "permiteAccesoContactos": true,
+      "permiteAccesoLlamadas": true,
+      "usando": "Termux API"
+    }
+  },
+  "modulosDisponibles": {
+    "cuentas": {
+      "descripcion": "Punto de entrada al sistema. Permite crear cuentas a través de tipos definidos como módulos autónomos.",
+      "tipo": "launcher"
+    },
+    "productos": {
+      "descripcion": "Módulo de selección de productos basado en un JSON cargado. Soporta variaciones y personalizaciones.",
+      "tipo": "operativo"
+    },
+    "carrito": {
+      "descripcion": "Caja virtual asociada a una cuenta. Gestiona ítems, totales y proceso de pago con lógica plugin.",
+      "tipo": "transaccional"
+    },
+    "flujoPedidos": {
+      "descripcion": "Módulo que centraliza la gestión del flujo de pedidos: generación, preparación y entrega. Cada etapa tiene su lógica desacoplada en archivos independientes.",
+      "tipo": "operativo"
+    },
+    "cierres": {
+      "descripcion": "Gestiona el cierre diario, exporta datos por email y elimina datos locales.",
+      "tipo": "administrativo"
+    },
+    "impresora": {
+      "descripcion": "Centraliza la presentación de comandas, ya sea en impresora o pantalla.",
+      "tipo": "infraestructura"
+    },
+    "core": {
+      "descripcion": "Centro de eventos, validación, sincronización y control de dispositivos.",
+      "tipo": "sistema"
+    },
+    "almacenamiento": {
+      "descripcion": "Maneja archivos JSON del sistema. Sube, valida, guarda, descarga y permite backups.",
+      "tipo": "infraestructura"
+    },
+    "salida": {
+      "descripcion": "Distribuye datos hacia afuera del sistema: email, Telegram, etc.",
+      "tipo": "infraestructura"
+    }
+  },
+  "rutas": {
+    "descripcion": "Gestión de rutas internas no convencionales. Cada módulo tiene una ruta numérica simbólica, difícil de adivinar, para evitar accesos intuitivos. En lugar de proteger, se disimula.",
+    "tipo": "infraestructura",
+    "configuracion": {
+      "mapaRutas": {
+        "cuentas": "/428",
+        "productos": "/1337",
+        "carrito": "/051",
+        "flujoPedidos": "/9001",
+        "cierres": "/2020",
+        "impresora": "/404",
+        "core": "/3333",
+        "almacenamiento": "/867",
+        "salida": "/3141"
+      },
+      "modoSeguridad": "porDiscrecion",
+      "explicacion": "Las rutas están ocultas tras números sin lógica aparente. El sistema no expone interfaces predecibles, reduciendo superficie de ataque sin necesitar login o roles."
+    }
+  },
+  "red": {
+    "tipo": "wifi-local",
+    "internetDisponible": true,
+    "descripcion": "El sistema opera completamente dentro de una red WiFi local. El router tiene salida a internet, pero solo el módulo `salida` puede hacer uso de ella para enviar datos.",
+    "modulosConAccesoInternet": [
+      "salida"
+    ],
+    "protecciones": {
+      "firewallRecomendado": true,
+      "sinExposicionExterna": true,
+      "modoOfflineCompletoPosible": true
+    }
+  },
+  "observacionesGenerales": {
+    "estructura": "Este archivo define la configuración total del sistema PizzePOS. Contiene tanto lógica operativa como visual, rutas internas y restricciones de red.",
+    "usoRecomendado": "Debería estar disponible globalmente para el core, generadores de módulos, y herramientas de validación/configuración.",
+    "modificablePor": [
+      "core",
+      "almacenamiento"
+    ],
+    "actualizableMediante": "archivo plano reemplazable o gestor de archivos JSON",
+    "versionConfig": "1.0.0",
+    "creadoCon": "IA + humano (colaboración iterativa)",
+    "ultimaRevision": "Manual al cierre del diseño inicial",
+    "notas": [
+      "Cada módulo es independiente pero debe adherirse a esta configuración global.",
+      "Los nombres y rutas están pensados para evitar ambigüedad futura.",
+      "No se usa seguridad basada en usuarios, sino en arquitectura cerrada.",
+      "La red tiene acceso a internet, pero solo el módulo `salida` lo utiliza.",
+      "El archivo debe acompañarse de plantillas JSON por módulo cuando sea posible.",
+      "El orden, estructura y consistencia del archivo son clave para facilitar mantenimiento por humanos o IAs."
+    ]
+  }
+}

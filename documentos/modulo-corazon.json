@@ -1,0 +1,93 @@
+{
+  "nombre": "corazon",
+  "descripcion": "Centro del sistema. Gestiona la circulación de eventos entre módulos, mantiene el estado general y valida los accesos mediante llaves. Es el núcleo lógico del ecosistema PizzePOS.",
+  "tipo": "sistema",
+  "rutaURL": "/3333",
+  "directorio": "modulos/corazon/",
+  "archivosPrincipales": [
+    "index.ts",
+    "eventos/broker.ts",
+    "estado/estado.ts",
+    "validacion/llaves.ts"
+  ],
+  "estructuraArchivos": {
+    "eventos/": [
+      "broker.ts",
+      "distribuidor.ts"
+    ],
+    "estado/": [
+      "estado.ts",
+      "registroDispositivos.ts"
+    ],
+    "validacion/": [
+      "llaves.ts"
+    ],
+    "utils/": [
+      "helpers.ts"
+    ],
+    "config/": [
+      "config.ts"
+    ]
+  },
+  "stack": {
+    "frontend": "No aplica",
+    "estilos": "No aplica",
+    "bundler": "Vite",
+    "comunicacion": "WebSocket",
+    "validacion": "Zod",
+    "monedas": "Dinero.js (si se requiere para eventos)",
+    "fechas": "date-fns"
+  },
+  "estandares": {
+    "idioma": "español",
+    "nombresEventos": "modulo:evento",
+    "estructuraCodigo": "modular, lógica separada, sin referencias circulares",
+    "nombresVariables": "descriptivos, en español, sin abreviaturas técnicas",
+    "estilos": "No aplica"
+  },
+  "eventos": {
+    "escucha": [
+      "core:reiniciarSistema",
+      "core:modoOffline",
+      "core:llaveRevocada",
+      "core:logGenerado"
+    ],
+    "emite": [
+      "core:eventoRecibido",
+      "core:eventoDistribuido",
+      "core:errorDetectado",
+      "core:estadoModificado"
+    ]
+  },
+  "accesoCore": false,
+  "dependencias": [
+    "almacenamiento",
+    "salida"
+  ],
+  "archivosExternos": [
+    {
+      "archivo": "dispositivos.json",
+      "uso": "Lista de llaves y dispositivos autorizados para conectarse al sistema",
+      "modificable": true
+    },
+    {
+      "archivo": "logs.json",
+      "uso": "Registro temporal de eventos críticos para envío al cierre",
+      "modificable": false
+    }
+  ],
+  "otrosModulos": {
+    "almacenamiento": "Carga los archivos de dispositivos y configuración desde disco",
+    "salida": "Envía logs o errores a email o Telegram",
+    "productos": "Puede emitir eventos que pasan por el core",
+    "carrito": "Intercambia eventos con productos y flujoPedidos",
+    "flujoPedidos": "Escucha eventos para distribuir estados de pedidos"
+  },
+  "notas": [
+    "El módulo corazon no tiene interfaz. Toda su lógica es backend.",
+    "Debe mantenerse desacoplado: no tiene que conocer detalles de otros módulos.",
+    "Actúa como broker interno: escucha eventos y los redistribuye según suscriptores.",
+    "Puede usarse en el futuro para detección de errores en cascada y monitoreo interno.",
+    "Maneja estado temporal, nunca persistente (excepto lo que guarda almacenamiento)."
+  ]
+}
