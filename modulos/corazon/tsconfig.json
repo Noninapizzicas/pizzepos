@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@core/*": ["./*"],
+      "@config/*": ["./config/*"],
+      "@estado/*": ["./estado/*"],
+      "@eventos/*": ["./eventos/*"],
+      "@validacion/*": ["./validacion/*"],
+      "@utils/*": ["./utils/*"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
+}
