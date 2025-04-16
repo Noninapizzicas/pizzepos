@@ -1,0 +1,16 @@
+{
+  "name": "pizzepos",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "modulos/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "start": "echo 'Usar scripts en cada módulo'",
+    "lint": "echo 'Agregar linter si es necesario'"
+  },
+  "devDependencies": {
+    "lerna": "^6.6.2"
+  }
+}
