@@ -1,0 +1,14 @@
+{
+  "servidor": {
+    "puerto": 8080
+  },
+  "version": "1.0.0",
+  "seguridad": {
+    "permitirReconexiones": true,
+    "tiempoMaximoInactivo": 3600000
+  },
+  "logs": {
+    "nivel": "info",
+    "guardarEnArchivo": false
+  }
+}
