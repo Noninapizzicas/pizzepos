@@ -1,0 +1,78 @@
+{
+  "nombre": "microservidor",
+  "descripcion": "Módulo encargado de exponer un WebSocket local para recibir y emitir eventos entre dispositivos conectados a la red y el sistema.",
+  "tipo": "infraestructura",
+  "rutaURL": "/5050",
+  "directorio": "modulos/microservidor/",
+  "archivosPrincipales": [
+    "index.ts",
+    "servidor/ws.ts",
+    "validacion/autenticacion.ts",
+    "eventos/manejadorEventos.ts"
+  ],
+  "estructuraArchivos": {
+    "servidor/": [
+      "ws.ts"
+    ],
+    "validacion/": [
+      "autenticacion.ts"
+    ],
+    "eventos/": [
+      "manejadorEventos.ts"
+    ],
+    "utils/": [
+      "helpers.ts"
+    ],
+    "config/": [
+      "config.ts"
+    ]
+  },
+  "stack": {
+    "frontend": "No aplica",
+    "estilos": "No aplica",
+    "bundler": "Vite",
+    "comunicacion": "WebSocket nativo",
+    "validacion": "Zod",
+    "monedas": "No aplica",
+    "fechas": "date-fns"
+  },
+  "estandares": {
+    "idioma": "español",
+    "nombresEventos": "modulo:evento",
+    "estructuraCodigo": "modular, lógica separada, sin referencias circulares",
+    "nombresVariables": "descriptivos, en español, sin abreviaturas técnicas",
+    "estilos": "No aplica"
+  },
+  "eventos": {
+    "escucha": [
+      "core:eventoDistribuido",
+      "core:llaveRevocada"
+    ],
+    "emite": [
+      "microservidor:conexionEstablecida",
+      "microservidor:eventoEntrante",
+      "microservidor:errorConexion"
+    ]
+  },
+  "accesoCore": true,
+  "dependencias": [
+    "core"
+  ],
+  "archivosExternos": [
+    {
+      "archivo": "dispositivos.json",
+      "uso": "Validación de llaves para conexiones entrantes",
+      "modificable": false
+    }
+  ],
+  "otrosModulos": {
+    "core": "Distribuye los eventos recibidos del microservidor y valida los dispositivos",
+    "almacenamiento": "Este módulo no depende directamente, pero puede usar configuración de red"
+  },
+  "notas": [
+    "Este módulo no transforma eventos, solo los valida y reenvía.",
+    "Usa WebSocket nativo para mantener peso mínimo.",
+    "Emite eventos de conexión y error para ser registrados por otros módulos.",
+    "Puede reiniciarse sin afectar el resto del sistema."
+  ]
+}
