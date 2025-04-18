@@ -1,0 +1,21 @@
+{
+  "nombre": "complemento.ejemplo",
+  "descripcion": "Complemento de ejemplo para el módulo de almacenamiento.",
+  "tipo": "archivo-json",
+  "estructuraEsperada": {
+    "campos": ["id", "nombre", "activo", "precio"]
+  },
+  "validaciones": {
+    "id": "string:uuid",
+    "nombre": "string:min:3",
+    "activo": "boolean",
+    "precio": "number:min:0"
+  },
+  "acciones": ["validar", "guardar", "descargar"],
+  "plantillaArchivo": {
+    "id": "uuid-generado",
+    "nombre": "Nombre del ítem",
+    "activo": true,
+    "precio": 0
+  }
+}
