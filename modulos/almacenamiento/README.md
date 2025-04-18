@@ -85,3 +85,35 @@ await gestorArchivos.eliminarArchivo('datos/productos.json');
 - Emisión de eventos para todas las operaciones
 - Validación integrada con Zod
 - Manejo robusto de errores
+
+## Sistema de Respaldos
+
+El módulo incluye un sistema robusto de respaldos automáticos para archivos JSON:
+
+```typescript
+import respaldo from './modulos/almacenamiento/utils/respaldo';
+
+// Crear un respaldo manualmente
+await respaldo.crearRespaldo('productos.json', contenidoJSON);
+
+// Listar respaldos disponibles
+const respaldosProductos = await respaldo.listarRespaldos('productos');
+
+// Restaurar un respaldo específico
+const contenidoRestaurado = await respaldo.restaurarRespaldo('productos/productos_20240417T1105.bak.json');
+
+// Obtener información de un respaldo
+const info = await respaldo.obtenerInfoRespaldo('productos/productos_20240417T1105.bak.json');
+
+// Limpiar respaldos antiguos (mantener solo los 5 más recientes)
+await respaldo.limpiarRespaldosAntiguos('productos', 5);
+```
+
+### Características del sistema de respaldos
+
+- Organización por tipo de archivo
+- Marcas de tiempo únicas en formato ISO
+- Nombrado automático con formato consistente
+- Historial de respaldos con capacidad de restauración
+- Limpieza automática de respaldos antiguos
+- Emisión de eventos para seguimiento
