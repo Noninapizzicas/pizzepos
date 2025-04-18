@@ -1,16 +1,19 @@
 {
-  "name": "pizzepos",
-  "private": true,
-  "version": "0.1.0",
-  "workspaces": [
-    "modulos/*"
-  ],
+  "name": "pizzepos-microservidor",
+  "version": "1.0.0",
+  "description": "Microservidor WebSocket para el sistema PizzePOS",
+  "type": "module",
+  "main": "index.ts",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "start": "echo 'Usar scripts en cada módulo'",
-    "lint": "echo 'Agregar linter si es necesario'"
+    "start": "ts-node index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "ws": "^8.13.0",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
-    "lerna": "^6.6.2"
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1"
   }
 }
