@@ -54,3 +54,34 @@ El validador emite los siguientes eventos:
 - `almacenamiento:validacionExitosa`: Cuando un archivo cumple con su plantilla
 - `almacenamiento:validacionFallida`: Cuando se encuentran errores de estructura
 - `almacenamiento:error`: Cuando ocurre un error crítico durante la validación
+
+## Gestor de Archivos
+
+El sistema incluye un gestor de archivos robusto que permite operaciones CRUD sobre archivos JSON:
+
+```typescript
+import gestorArchivos from './modulos/almacenamiento/utils/gestorArchivos';
+
+// Leer un archivo
+const contenido = await gestorArchivos.leerArchivo('config/config.json');
+
+// Leer y parsear un archivo JSON
+const datos = await gestorArchivos.leerJSON('datos/productos.json');
+
+// Guardar un archivo JSON
+await gestorArchivos.guardarJSON('datos/productos.json', objetoProductos);
+
+// Crear un respaldo
+await gestorArchivos.hacerBackup('datos/productos.json');
+
+// Eliminar un archivo (con respaldo automático)
+await gestorArchivos.eliminarArchivo('datos/productos.json');
+```
+
+### Características principales
+
+- Rutas relativas o absolutas
+- Respaldos automáticos antes de modificar archivos
+- Emisión de eventos para todas las operaciones
+- Validación integrada con Zod
+- Manejo robusto de errores
