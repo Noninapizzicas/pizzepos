@@ -30,3 +30,27 @@ await almacenamiento.guardarArchivo('productos', productosModificados);
 - `almacenamiento:errorValidacion`: Si un archivo no cumple con su plantilla
 - `almacenamiento:archivoPersistido`: Al guardar un archivo correctamente
 - `almacenamiento:error`: Error general del sistema de almacenamiento
+
+## Validación de archivos
+
+El sistema incluye un validador robusto que verifica la estructura de los archivos JSON según plantillas predefinidas:
+
+```typescript
+import { validador } from './modulos/almacenamiento/validacion/validador';
+
+// Validar un archivo JSON
+const esValido = await validador.validarArchivo(contenidoJSON, 'productos');
+
+// Validar datos ya parseados
+const datosValidos = await validador.validarDatos(objetoProductos, 'productos');
+
+// Generar una nueva plantilla basada en datos existentes
+await validador.generarPlantilla(objetoProductos, 'nuevoTipo');
+```
+
+### Eventos de validación
+
+El validador emite los siguientes eventos:
+- `almacenamiento:validacionExitosa`: Cuando un archivo cumple con su plantilla
+- `almacenamiento:validacionFallida`: Cuando se encuentran errores de estructura
+- `almacenamiento:error`: Cuando ocurre un error crítico durante la validación
