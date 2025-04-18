@@ -1,0 +1,9 @@
+{
+  "tipo": "productos",
+  "descripcion": "Archivo de productos cargable en memoria",
+  "estructuraEsperada": "productos.schema.json",
+  "destino": "productos.json",
+  "persistente": true,
+  "usaUI": true,
+  "version": "1.0.0"
+}

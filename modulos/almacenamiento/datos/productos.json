@@ -1,0 +1,31 @@
+{
+  "productos": [
+    {
+      "id": "pizza-margarita",
+      "nombre": "Pizza Margarita",
+      "descripcion": "Pizza clásica con tomate, mozzarella y albahaca",
+      "precio": 8.50,
+      "categoria": "pizzas",
+      "disponible": true
+    },
+    {
+      "id": "pizza-jamon",
+      "nombre": "Pizza Jamón",
+      "descripcion": "Pizza con tomate, mozzarella y jamón",
+      "precio": 9.00,
+      "categoria": "pizzas",
+      "disponible": true
+    }
+  ],
+  "categorias": [
+    {
+      "id": "pizzas",
+      "nombre": "Pizzas"
+    },
+    {
+      "id": "bebidas",
+      "nombre": "Bebidas"
+    }
+  ],
+  "version": "1.0.0"
+}

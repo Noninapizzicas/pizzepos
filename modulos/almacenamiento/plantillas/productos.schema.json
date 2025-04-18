@@ -1,0 +1,19 @@
+{
+  "productos": [
+    {
+      "id": "",
+      "nombre": "",
+      "descripcion": "",
+      "precio": 0,
+      "categoria": "",
+      "disponible": true
+    }
+  ],
+  "categorias": [
+    {
+      "id": "",
+      "nombre": ""
+    }
+  ],
+  "version": ""
+}
