@@ -117,3 +117,42 @@ await respaldo.limpiarRespaldosAntiguos('productos', 5);
 - Historial de respaldos con capacidad de restauración
 - Limpieza automática de respaldos antiguos
 - Emisión de eventos para seguimiento
+
+## Utilidades (Helpers)
+
+El módulo incluye un conjunto de funciones utilitarias para simplificar operaciones comunes:
+
+```typescript
+import { 
+  generarNombreArchivoSeguro, 
+  leerJSONSeguro, 
+  guardarJSONSeguro, 
+  calcularHash 
+} from './modulos/almacenamiento/utils/helpers';
+
+// Generar un nombre único para un archivo
+const nombreSeguro = generarNombreArchivoSeguro('productos'); // 'productos_20240419T1530_a1b2.json'
+
+// Leer un archivo JSON con valor por defecto
+const config = await leerJSONSeguro('config.json', { version: '1.0.0' });
+
+// Guardar un objeto como JSON (crea directorios si no existen)
+await guardarJSONSeguro('datos/nuevos/productos.json', datosProductos);
+
+// Calcular el hash de un contenido
+const hash = calcularHash(JSON.stringify(datosProductos));
+```
+
+### Funciones disponibles
+
+- **Manejo de archivos**:
+  - `verificarExisteRuta`, `crearDirectorioSiNoExiste`, `leerJSONSeguro`, `guardarJSONSeguro`
+  
+- **Generación de identificadores**:
+  - `generarNombreArchivoSeguro`, `generarUUID`, `calcularHash`
+  
+- **Manipulación de rutas**:
+  - `esRutaAbsoluta`, `resolverRuta`, `obtenerExtension`, `obtenerNombreBase`
+  
+- **Validación y utilidades**:
+  - `sonObjetosIdenticos`, `tieneEstructuraMinima`, `formatearTamano`, `agregarMetadatos`
