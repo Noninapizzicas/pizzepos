@@ -1,94 +1,98 @@
-# Módulo Almacenamiento - Panel de Complementos
 
-## Propósito
-
-Este archivo describe el diseño y comportamiento del _Panel de Complementos_ del módulo `almacenamiento` de PizzePOS. Este panel representa una interfaz visual que lista, organiza y permite interactuar con los complementos cargados dinámicamente en tiempo de ejecución.
+Este archivo describe la implementación visual del **panel de complementos** del módulo `almacenamiento`. Este componente forma parte de la interfaz gráfica del sistema PizzePOS, cumpliendo estrictamente con su filosofía: modularidad, eventos, validación estricta y mínimo acoplamiento.
 
 ---
 
-## Punto de entrada y activación
+## Ubicación del archivo
 
-- **Ruta protegida:** `/867?modo=panel`
-- **Protección:** Solo accesible con dispositivos validados desde la configuración.
-- **Disparador:** No responde a eventos del sistema. Es una acción deliberada del usuario autorizado.
-- **Filosofía aplicada:** Acceso intencional, protegido y consciente. No se navega por accidente.
+El archivo de implementación debe residir en:
 
----
-
-## Función principal
-
-El _Panel de Complementos_ actúa como el tablero visual desde donde se:
-
-- Visualizan todos los complementos disponibles.
-- Accede a sus plantillas para ver estructura.
-- Sube nuevos archivos al sistema, validados y persistidos.
-- Visualiza errores y estados de persistencia.
-- Permite restaurar desde backup si el complemento lo admite.
+```
+modulos/almacenamiento/visual/panelComplementos.ts
+```
 
 ---
 
-## Carga de Complementos
+## Propósito del componente
 
-El panel obtiene la lista desde el sistema `cargador.ts`, quien:
+Permitir al usuario visualizar, gestionar y operar los complementos cargados en el sistema.
 
-- Detecta todos los complementos en `/almacenamiento/complementos`
-- Valida que tengan metadatos `.meta.json`
-- Carga su lógica con un archivo `.ts` correspondiente
-- Accede a sus plantillas desde `/almacenamiento/plantillas/*.json`
+Debe mostrar:
 
----
-
-## Interacción con el usuario
-
-- Vista estilo "grid" con tarjetas por complemento
-- Cada tarjeta muestra: Nombre, descripción, icono y acciones:
-  - Ver plantilla
-  - Subir archivo
-  - Descargar actual
-  - Restaurar (si el complemento lo permite)
-- El panel se adapta a móviles y pantallas táctiles
+- Lista de complementos disponibles (detectados por `cargadorComplementos`).
+- Opciones para:
+  - Cargar un archivo JSON asociado a cada complemento.
+  - Validarlo contra la plantilla.
+  - Guardarlo en disco.
+  - Descargarlo (si ya existe).
+- Acceso visual a las plantillas para referencia.
 
 ---
 
-## Estilos visuales
+## Interacción con el sistema
 
-Toda la parte visual se adapta a `config/estilos.json`, incluyendo:
+### Requiere acceso a:
 
-- Colores de fondo
-- Tipografía
-- Bordes y sombras
-- Íconos
-- Tamaños de botones
+- Instancia `cargadorComplementos`.
+- Estilos globales desde `/config/estilos.json`.
 
----
+### Eventos que debe emitir:
 
-## CheckList para implementación
-
-- [x] Listar todos los complementos activos
-- [x] Ver plantilla en formato visual (estructura esperada)
-- [x] Subida drag & drop o input file
-- [x] Validación antes de persistir
-- [x] Confirmación al guardar
-- [x] Evento emitido al guardar correctamente
-- [x] Descarga del archivo persistido
-- [x] Restauración desde backup si aplica
-- [x] Estilos desde `estilos.json`
-- [x] No navegación, solo interfaz de acción directa
-
----
-
-## Eventos clave emitidos
-
-- `almacenamiento:complementosCargados`
+- `almacenamiento:archivoSubido`
+- `almacenamiento:archivoValidado`
 - `almacenamiento:archivoPersistido`
 - `almacenamiento:archivoInvalido`
-- `almacenamiento:archivoCargado`
-- `core:errorDetectado` (si falla algo grave)
 
 ---
 
-## Consideraciones
+## Estructura visual sugerida
 
-- El panel es una interfaz de administración. Nunca visible al cliente.
-- Requiere intencionalidad, acceso directo y validación previa.
-- Es el punto base para mantenimiento del sistema desde interfaz gráfica.
+- **Panel lateral**: Lista de todos los complementos activos.
+- **Área central**:
+  - Vista previa de plantilla.
+  - Input de archivo (`drag-and-drop` o `file input`).
+  - Validación automática al cargar.
+  - Botón “Guardar en sistema” (si pasa la validación).
+- **Mensajes visuales** de éxito/error en validación y guardado.
+
+---
+
+## Estilo y diseño
+
+- Cargar estilos visuales desde `estilos.json` global.
+- No incluir estilos en línea ni hardcodeados.
+- Adaptabilidad básica para pantallas táctiles y escritorio.
+- Evitar navegación. Todo debe pasar en un solo componente reactivo.
+
+---
+
+## Lógica obligatoria
+
+- Mostrar `nombre`, `tipo`, `descripcion` de cada complemento.
+- Botón para cargar archivo y validarlo.
+- Botón para visualizar plantilla (`productos.plantilla.json`, por ejemplo).
+- Validación automática usando `manejador.validar`.
+- Guardado usando `cargadorComplementos.guardar`.
+- Carga de archivo existente con `cargadorComplementos.cargar`.
+
+---
+
+## Check List de implementación (para IA o dev)
+
+- [ ] Usa instancia `cargadorComplementos`.
+- [ ] Carga estilos desde `estilos.json`.
+- [ ] Emite eventos adecuados.
+- [ ] No hay rutas expuestas ni navegación clásica.
+- [ ] Es autónomo y puede funcionar sin conexión externa.
+- [ ] Los archivos cargados pasan validación antes de ser persistidos.
+- [ ] Muestra claramente errores y confirmaciones.
+- [ ] Expone plantilla de ejemplo al usuario para cada complemento.
+- [ ] Todo archivo gestionado va a `modulos/almacenamiento/data`.
+
+---
+
+## Consideraciones finales
+
+Este panel actúa como **puente visual entre el usuario y el sistema modular de complementos**. No implementa lógica de negocio, solo orquesta acciones e interfaces. Su misión es: **mostrar, validar, persistir y respetar la estructura de cada complemento** con claridad y simplicidad.
+
+
