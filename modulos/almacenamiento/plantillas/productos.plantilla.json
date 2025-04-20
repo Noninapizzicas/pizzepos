@@ -1,19 +1,32 @@
 {
-  "productos": [
-    {
-      "id": "string",
-      "nombre": "string",
-      "precio": 0,
-      "descripcion": "string",
-      "categoria": "string",
-      "disponible": true
+  "camposRequeridos": ["id", "nombre", "precio", "categoria"],
+  "ejemplo": {
+    "id": "p001",
+    "nombre": "Pizza Margarita",
+    "descripcion": "La clásica pizza con tomate y mozzarella",
+    "precio": 8.99,
+    "categoria": "pizzas",
+    "disponible": true,
+    "opciones": []
+  },
+  "esquema": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["id", "nombre", "precio", "categoria"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^p[0-9]{3}$" },
+        "nombre": { "type": "string", "minLength": 3, "maxLength": 50 },
+        "descripcion": { "type": "string", "maxLength": 200 },
+        "precio": { "type": "number", "minimum": 0 },
+        "categoria": { "type": "string", "enum": ["pizzas", "bebidas", "postres", "entrantes"] },
+        "disponible": { "type": "boolean", "default": true },
+        "opciones": { 
+          "type": "array", 
+          "items": { "type": "string" },
+          "default": []
+        }
+      }
     }
-  ],
-  "categorias": [
-    {
-      "id": "string",
-      "nombre": "string"
-    }
-  ],
-  "version": "string"
+  }
 }

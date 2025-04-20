@@ -1,0 +1,8 @@
+{
+  "tipo": "productos",
+  "descripcion": "Archivo de productos cargable en memoria para la carta del restaurante",
+  "estructuraEsperada": "plantillas/productos.plantilla.json",
+  "destino": "data/productos.json",
+  "persistente": true,
+  "usaUI": true
+}
