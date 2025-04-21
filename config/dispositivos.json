@@ -1,0 +1,14 @@
+[
+  {
+    "id": "terminal-01",
+    "llave": "12345-abcde-67890-fghij",
+    "activo": true,
+    "rol": "administrador"
+  },
+  {
+    "id": "terminal-02",
+    "llave": "54321-edcba-09876-jihgf",
+    "activo": true,
+    "rol": "operador"
+  }
+]

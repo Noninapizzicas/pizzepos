@@ -1,0 +1,27 @@
+{
+  "colores": {
+    "primario": "#e53935",
+    "secundario": "#ffb74d",
+    "fondo": "#f5f5f5",
+    "texto": "#212121",
+    "exito": "#4caf50",
+    "error": "#f44336",
+    "advertencia": "#ff9800",
+    "info": "#2196f3"
+  },
+  "tipografia": {
+    "fuente": "'Segoe UI', Tahoma, sans-serif",
+    "tamanioBase": "16px",
+    "titulos": "'Segoe UI', Tahoma, sans-serif"
+  },
+  "bordes": {
+    "radio": "8px",
+    "sombra": "0 2px 4px rgba(0, 0, 0, 0.1)"
+  },
+  "espaciado": {
+    "unidad": "8px",
+    "pequenio": "8px",
+    "normal": "16px",
+    "grande": "24px"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "pizzepos-microservidor",
+  "version": "1.0.0",
+  "description": "Microservidor WebSocket para el sistema PizzePOS",
+  "type": "module",
+  "main": "index.ts",
+  "dependencies": {
+    "ws": "^8.13.0",
+    "zod": "^3.22.2",
+    "date-fns": "^2.30.0"
+  }
+}

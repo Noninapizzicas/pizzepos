@@ -1,0 +1,10 @@
+{
+  "name": "pizzepos-almacenamiento",
+  "version": "1.0.0",
+  "description": "Módulo de almacenamiento para el sistema PizzePOS",
+  "type": "module",
+  "main": "index.ts",
+  "dependencies": {
+    "zod": "^3.22.2"
+  }
+}
